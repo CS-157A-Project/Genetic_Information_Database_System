@@ -2,6 +2,7 @@ package src;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,15 +14,13 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        // Read form parameters
+        throws ServletException, IOException {
+
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
-        // Authenticate via UserAuth
         UserAuth.AuthResult auth = UserAuth.login(username, password);
 
-        // Prepare HTML response
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
 
@@ -34,4 +33,3 @@ public class LoginServlet extends HttpServlet {
         }
     }
 }
-

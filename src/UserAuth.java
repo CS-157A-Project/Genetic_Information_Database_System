@@ -4,37 +4,38 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 public class UserAuth {
-    // Inner class to hold the result of an authentication
+
+    // Adjust your DB connection as needed
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/genetic_db";
+    private static final String USER = "root";
+    private static final String PASS = "123456";
+
+    // Simple result class to return login status and role
     public static class AuthResult {
         public final String role;
-        public AuthResult(String role) { this.role = role; }
+        public AuthResult(String role) {
+            this.role = role;
+        }
     }
 
-    // Authenticate against the Users table in genetic_db
+    // Login method
     public static AuthResult login(String username, String password) {
-        String url = "jdbc:mysql://localhost:3306/genetic_db";
-        String dbUser = "root";
-        String dbPass = "123456";  // your MySQL password
-
-        String sql = "SELECT role FROM Users WHERE username = ? AND password = ?";
-        try (
-            Connection conn = DriverManager.getConnection(url, dbUser, dbPass);
-            PreparedStatement stmt = conn.prepareStatement(sql)
-        ) {
+        try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS)) {
+            String sql = "SELECT role FROM Users WHERE username = ? AND password = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, username);
             stmt.setString(2, password);
-            try (ResultSet rs = stmt.executeQuery()) {
-                if (rs.next()) {
-                    return new AuthResult(rs.getString("role"));
-                }
+
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                String role = rs.getString("role");
+                return new AuthResult(role);
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;  // login failed
+        return null; // Login failed
     }
 }
-
