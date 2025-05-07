@@ -36,6 +36,7 @@ public class UserAuth {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         return null; // Login failed
     }
 }
