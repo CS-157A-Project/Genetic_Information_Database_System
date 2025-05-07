@@ -5,7 +5,8 @@
 
 import java.util.Scanner;
 import java.sql.*;
-import your.package.path.UserAuth; // Adjust package if needed
+import UserAuth;
+
  
  
  public class GeneticDBMain {
