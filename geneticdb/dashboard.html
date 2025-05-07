@@ -2,64 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Genetic DB Dashboard</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Dashboard</title>
   </head>
-  <body class="bg-gray-50 min-h-screen">
-    <nav class="bg-white shadow">
-      <div
-        class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center"
-      >
-        <h1 class="text-2xl font-bold text-green-700">Genetic DB</h1>
-        <a href="login.html" class="text-red-600 hover:underline">Log Out</a>
-      </div>
-    </nav>
-
-    <main class="max-w-4xl mx-auto mt-10 p-6 bg-white rounded shadow">
-      <h2 class="text-xl font-semibold mb-4">
-        Welcome, <span id="userRole" class="text-green-600">admin</span>!
-      </h2>
-
-      <div id="adminPanel" class="hidden">
-        <h3 class="text-lg font-bold mb-2 text-blue-700">Admin Panel</h3>
-        <ul class="list-disc ml-5 text-gray-700">
-          <li>Manage Users</li>
-          <li>View All Logs</li>
-          <li>Database Configuration</li>
-        </ul>
-      </div>
-
-      <div id="researcherPanel" class="hidden">
-        <h3 class="text-lg font-bold mb-2 text-purple-700">Researcher Panel</h3>
-        <ul class="list-disc ml-5 text-gray-700">
-          <li>Browse Gene Sequences</li>
-          <li>Submit Mutation Reports</li>
-          <li>Analyze Organism Traits</li>
-        </ul>
-      </div>
-
-      <div id="staffPanel" class="hidden">
-        <h3 class="text-lg font-bold mb-2 text-yellow-700">Staff Tools</h3>
-        <ul class="list-disc ml-5 text-gray-700">
-          <li>View Assigned Tasks</li>
-          <li>Generate Sample Reports</li>
-        </ul>
-      </div>
-    </main>
-
-    <script>
-      const userRole = "admin" // Change to "researcher" or "staff" to test
-
-      document.getElementById("userRole").textContent = userRole
-
-      if (userRole === "admin") {
-        document.getElementById("adminPanel").classList.remove("hidden")
-      } else if (userRole === "researcher") {
-        document.getElementById("researcherPanel").classList.remove("hidden")
-      } else if (userRole === "staff") {
-        document.getElementById("staffPanel").classList.remove("hidden")
-      }
-    </script>
+  <body>
+    <h2>Welcome to the Genetic Database System</h2>
+    <p>Login successful!</p>
   </body>
 </html>

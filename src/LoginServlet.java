@@ -1,35 +1,27 @@
 package src;
 
+import jakarta.servlet.*;
+import jakarta.servlet.http.*;
+import jakarta.servlet.annotation.*;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-
-@WebServlet("/login")
+@WebServlet("/login")  // IMPORTANT
 public class LoginServlet extends HttpServlet {
+  protected void doPost(HttpServletRequest request, HttpServletResponse response)
+          throws ServletException, IOException {
+    String username = request.getParameter("username");
+    String password = request.getParameter("password");
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {
-
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-
-        UserAuth.AuthResult auth = UserAuth.login(username, password);
-
-        response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
-
-        if (auth != null) {
-            out.println("<h2>Login successful!</h2>");
-            out.println("<p>Welcome, " + username + " (" + auth.role + ")</p>");
-        } else {
-            out.println("<h2>Login failed</h2>");
-            out.println("<p>Invalid username or password.</p>");
-        }
+    // Dummy check or call UserAuth.login() here
+    if ("admin".equals(username) && "admin123".equals(password)) {
+      response.sendRedirect("dashboard.html");
+    } else {
+      response.setContentType("text/html");
+      PrintWriter out = response.getWriter();
+      out.println("<h1>Login Failed</h1>");
     }
+  }
 }
+
