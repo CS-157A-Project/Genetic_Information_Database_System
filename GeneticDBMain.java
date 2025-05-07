@@ -13,9 +13,22 @@
  
      public static void main(String[] args) {
          try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS)) {
-             System.out.println("Connected to MySQL Database.");
              Scanner scanner = new Scanner(System.in);
-             
+ 
+             System.out.print("Enter username: ");
+             String username = scanner.nextLine();
+             System.out.print("Enter password: ");
+             String password = scanner.nextLine();
+ 
+             // Authenticate user
+             UserAuth.AuthResult auth = UserAuth.login(username, password);
+             if (auth == null) {
+                 System.out.println("Exiting due to failed login.");
+                 return;
+             }
+             String role = auth.role;
+             System.out.println("Welcome, " + role + " user!");
+ 
              while (true) {
                  System.out.println("\nGenetic Information Database");
                  System.out.println("1. Add Organism");
@@ -184,42 +197,4 @@
          }
      }
  }
- 
- /*
-  * Note:
-  * - Make sure MySQL is running and the schema `genetic_db` exists.
-  * - Create the required tables in MySQL using the following SQL:
-  *
-  * CREATE TABLE Organisms (
-  *   organism_id INT AUTO_INCREMENT PRIMARY KEY,
-  *   scientific_name VARCHAR(255),
-  *   common_name VARCHAR(255),
-  *   taxonomy VARCHAR(255),
-  *   genome_size INT
-  * );
-  *
-  * CREATE TABLE Genes (
-  *   gene_id INT AUTO_INCREMENT PRIMARY KEY,
-  *   organism_id INT,
-  *   gene_name VARCHAR(255),
-  *   chromosome VARCHAR(50),
-  *   start_position INT,
-  *   end_position INT,
-  *   strand CHAR(1),
-  *   description TEXT,
-  *   FOREIGN KEY (organism_id) REFERENCES Organisms(organism_id) ON DELETE CASCADE
-  * );
-  *
-  * CREATE TABLE Mutations (
-  *   mutation_id INT AUTO_INCREMENT PRIMARY KEY,
-  *   organism_id INT,
-  *   chromosome VARCHAR(50),
-  *   position INT,
-  *   reference_base VARCHAR(5),
-  *   alternate_base VARCHAR(5),
-  *   mutation_type VARCHAR(100),
-  *   impact TEXT,
-  *   FOREIGN KEY (organism_id) REFERENCES Organisms(organism_id) ON DELETE CASCADE
-  * );
-  */
  

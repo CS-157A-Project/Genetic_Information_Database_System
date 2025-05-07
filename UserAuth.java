@@ -101,3 +101,4 @@
   * ('alice', 'alice123', 'researcher'),
   * ('bob', 'bob123', 'staff');
   */
+ 
