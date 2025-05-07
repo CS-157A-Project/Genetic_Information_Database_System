@@ -7,21 +7,31 @@ import jakarta.servlet.annotation.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet("/login")  // IMPORTANT
+@WebServlet("/login")
 public class LoginServlet extends HttpServlet {
-  protected void doPost(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
-    String username = request.getParameter("username");
-    String password = request.getParameter("password");
 
-    // Dummy check or call UserAuth.login() here
-    if ("admin".equals(username) && "admin123".equals(password)) {
-      response.sendRedirect("dashboard.html");
-    } else {
-      response.setContentType("text/html");
-      PrintWriter out = response.getWriter();
-      out.println("<h1>Login Failed</h1>");
+    // Fix for GET requests (like opening /login in browser)
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.sendRedirect("login.html");
     }
-  }
-}
 
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+
+        UserAuth.AuthResult auth = UserAuth.login(username, password);
+
+        if (auth != null) {
+            response.sendRedirect("dashboard.html");
+        } else {
+            response.setContentType("text/html");
+            PrintWriter out = response.getWriter();
+            out.println("<h1>Login failed. Invalid username or password.</h1>");
+        }
+    }
+}
