@@ -1,8 +1,6 @@
 import java.sql.*;
 import java.util.Scanner;
 
-import UserAuth.AuthResult;
-
 public class GeneticDBMain {
     private static final String DB_URL = "jdbc:mysql://localhost:3306/genetic_db";
     private static final String USER = "root";
