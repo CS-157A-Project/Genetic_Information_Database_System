@@ -1,3 +1,4 @@
+package src;
 /*
  * GeneticDBMain.java
  * Entry point for the Genetic Information Database System
@@ -5,7 +6,6 @@
 
 import java.util.Scanner;
 import java.sql.*;
-import UserAuth;
 
  
  

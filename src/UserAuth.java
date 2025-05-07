@@ -1,3 +1,4 @@
+package src;
 /*
  * UserAuth.java
  * Handles login and user role validation
