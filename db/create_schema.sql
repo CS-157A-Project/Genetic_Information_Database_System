@@ -28,7 +28,6 @@ CREATE TABLE Mutations (
     mutation_id INT AUTO_INCREMENT PRIMARY KEY,
     gene_id INT NOT NULL,
     mutation_type VARCHAR(100),
-    position INT,
-    description TEXT,
+    effect VARCHAR(255),
     FOREIGN KEY (gene_id) REFERENCES Genes(gene_id)
 );
