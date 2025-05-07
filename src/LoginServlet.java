@@ -17,8 +17,13 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+                
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+
+        System.out.println("Username received: " + username);
+        System.out.println("Password received: " + password);
 
         UserAuth.AuthResult auth = UserAuth.login(username, password);
 
