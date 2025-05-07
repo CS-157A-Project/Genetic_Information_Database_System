@@ -3,24 +3,20 @@ package src;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 
-    // Fix for GET requests (like opening /login in browser)
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.sendRedirect("login.html");
+        response.sendRedirect("login.html");  // redirects GET to login form
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
