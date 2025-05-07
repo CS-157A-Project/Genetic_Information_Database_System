@@ -10,7 +10,7 @@ package src;
  public class UserAuth {
      private static final String DB_URL = "jdbc:mysql://localhost:3306/genetic_db";
      private static final String USER = "root";
-     private static final String PASS = "yourpassword"; // Replace with your MySQL root password
+     private static final String PASS = "123456"; // Replace with your MySQL root password
  
      public static class AuthResult {
          public final int userId;
