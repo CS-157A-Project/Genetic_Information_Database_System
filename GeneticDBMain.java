@@ -3,8 +3,10 @@
  * Entry point for the Genetic Information Database System
  */
 
- import java.sql.*;
- import java.util.Scanner;
+import java.util.Scanner;
+import java.sql.*;
+import your.package.path.UserAuth; // Adjust package if needed
+ 
  
  public class GeneticDBMain {
      private static final String DB_URL = "jdbc:mysql://localhost:3306/genetic_db";
