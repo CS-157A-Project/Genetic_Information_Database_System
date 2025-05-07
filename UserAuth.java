@@ -1,10 +1,4 @@
-package src;
-/*
- * UserAuth.java
- * Handles login and user role validation
- */
-
- import java.sql.*;
+import java.sql.*;
  import java.util.Scanner;
  
  public class UserAuth {

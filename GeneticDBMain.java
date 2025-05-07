@@ -1,11 +1,12 @@
-package src;
 import java.sql.*;
 import java.util.Scanner;
+
+import UserAuth.AuthResult;
 
 public class GeneticDBMain {
     private static final String DB_URL = "jdbc:mysql://localhost:3306/genetic_db";
     private static final String USER = "root";
-    private static final String PASS = "123456"; // your MySQL root password
+    private static final String PASS = "123456"; // MySQL root password
 
     public static void main(String[] args) {
         try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS)) {
