@@ -22,21 +22,28 @@ public class UserAuth {
 
     // Login method
     public static AuthResult login(String username, String password) {
+        System.out.println("Attempting login with: " + username + " / " + password);  // Debug input
+    
         try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS)) {
             String sql = "SELECT role FROM Users WHERE username = ? AND password = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, username);
             stmt.setString(2, password);
-
+    
             ResultSet rs = stmt.executeQuery();
+    
             if (rs.next()) {
                 String role = rs.getString("role");
+                System.out.println("Login success! Role: " + role);  // Debug result
                 return new AuthResult(role);
+            } else {
+                System.out.println("Login failed: No matching user found.");  // Debug failure
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            System.err.println("Error during login:");
+            e.printStackTrace();  // This will show SQLException or connection issues
         }
-
-        return null; // Login failed
+    
+        return null;
     }
 }
