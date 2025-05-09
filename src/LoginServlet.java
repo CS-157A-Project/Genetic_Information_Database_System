@@ -1,4 +1,4 @@
-package src;
+// package src;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -22,6 +22,9 @@ public class LoginServlet extends HttpServlet {
         
         String username = request.getParameter("username").trim();
         String password = request.getParameter("password").trim();
+
+        System.out.println("📥 Received username: " + username);
+        System.out.println("📥 Received password: " + password);
 
         // Debugging: Print the received username and password
         UserAuth.AuthResult auth = UserAuth.login(username, password);
