@@ -1,11 +1,13 @@
+// Import standard SQL classes for database connectivity
 import java.sql.*;
 
 public class UserAuth {
-
+    // Database connection constants
     private static final String DB_URL = "jdbc:mysql://localhost:3306/genetic_db";
     private static final String USER = "root";
     private static final String PASS = "123456";
 
+    // Class to store login result
     public static class AuthResult {
         public final String role;
         public AuthResult(String role) {
@@ -13,6 +15,7 @@ public class UserAuth {
         }
     }
 
+    // Method to validate login credentials
     public static AuthResult login(String username, String password) {
         System.out.println("Attempting login with: " + username + " / " + password);
 
@@ -29,14 +32,14 @@ public class UserAuth {
 
                 if (rs.next()) {
                     String role = rs.getString("role");
-                    System.out.println("✅ Login successful! Role: " + role);
+                    System.out.println("Login successful! Role: " + role);
                     return new AuthResult(role);
                 } else {
-                    System.out.println("❌ Login failed: No matching record.");
+                    System.out.println("Login failed: No matching record.");
                 }
             }
         } catch (Exception e) {
-            System.err.println("🚨 Error during login:");
+            System.err.println("Error during login:");
             e.printStackTrace();
         }
 
